@@ -1,26 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import { CssBaseline } from "@mui/material";
 
-function App() {
+import Layout from "components/Layout";
+import Board from "components/Board";
+import Chart from "components/Chart";
+import { AppProvider } from "contexts/AppContext";
+import { PriceProvider } from "contexts/PriceContext";
+import { ComponentEnum } from "types/common";
+
+const routes = [
+  {
+    type: ComponentEnum.BOARD,
+    path: "/",
+    element: <Board />,
+  },
+  {
+    type: ComponentEnum.CHART,
+    path: "/chart/:coinId",
+    element: <Chart />,
+  },
+];
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppProvider>
+      <CssBaseline />
+      <PriceProvider>
+        <BrowserRouter>
+          <Routes>
+            {routes.map((route) => (
+              <Route
+                key={`route-${route.type}`}
+                path={route.path}
+                element={<Layout type={route.type} element={route.element} />}
+              />
+            ))}
+          </Routes>
+        </BrowserRouter>
+        <ToastContainer />
+      </PriceProvider>
+    </AppProvider>
   );
-}
+};
 
 export default App;
