@@ -13,6 +13,7 @@ import { getLatestPrices } from "apis";
 import { AppContext } from "contexts/AppContext";
 
 const PriceContext = createContext({
+  isLoading: undefined,
   prices: undefined,
   setParams: () => {},
 } as IPriceContext);
@@ -20,10 +21,13 @@ const PriceContext = createContext({
 function PriceProvider({ children }: { children: ReactNode }) {
   const { setMessage } = useContext(AppContext);
 
+  const [isLoading, setIsLoading] = useState<boolean>();
   const [prices, setPrices] = useState<AssetsType>();
   const [params, setParams] = useState<AssetsInitType>();
 
   useEffect(() => {
+    setIsLoading(true);
+
     if (params) {
       new Promise(async () => {
         const assets: ApiResponseType = await getLatestPrices({
@@ -37,8 +41,10 @@ function PriceProvider({ children }: { children: ReactNode }) {
 
         if (assets.type === ApiResponseEnum.ERROR) {
           setMessage(assets.data);
+          setIsLoading(undefined);
         } else {
           setPrices(assets.data as AssetsType);
+          setIsLoading(false);
         }
       });
     }
@@ -47,6 +53,7 @@ function PriceProvider({ children }: { children: ReactNode }) {
   return (
     <PriceContext.Provider
       value={{
+        isLoading,
         prices,
         setParams,
       }}

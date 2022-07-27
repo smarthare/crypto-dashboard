@@ -1,17 +1,17 @@
 import { Box, TableCell, TableRow, styled } from "@mui/material";
 
 export const StyledBoardRow = styled(TableRow)`
-  height: 50px;
+  height: 3.5rem;
 
   &:hover {
-    background: ${({ theme }: { theme: any }) => theme.palette.button.hover};
+    background: ${({ theme }: { theme: any }) => theme.grey.hover};
     cursor: pointer;
   }
 `;
 
 export const StyledBoardCell = styled(TableCell)`
-  height: 50px;
-  padding: 3px 10px !important;
+  height: 3.5rem;
+  padding: 0.2rem 1rem !important;
 `;
 
 export const StyledCoinName = styled(Box)`
@@ -22,10 +22,10 @@ export const StyledCoinName = styled(Box)`
 export const StyledCoinImage = styled(Box)`
   display: flex;
   align-items: center;
-  width: 150px;
+  width: 10rem;
 
   & img {
     border-radius: 50%;
-    margin-right: 5px;
+    margin-right: 0.25rem;
   }
 `;

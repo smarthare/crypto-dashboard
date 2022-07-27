@@ -20,6 +20,7 @@ const BoardRow = ({ price }: Props) => {
 
   const handleClick = () => {
     navigate(`/chart/${price.id}`);
+    console.log(price)
   };
 
   return (

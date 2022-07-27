@@ -1,4 +1,8 @@
-import { Box, Toolbar, styled } from "@mui/material";
+import { Box, Toolbar, styled, AppBar } from "@mui/material";
+
+export const StyledAppBar = styled(AppBar)`
+  background: ${({ theme }: { theme: any }) => theme.grey.appbar};
+`;
 
 export const ButtonGroup = styled(Toolbar)`
   display: flex;
@@ -14,16 +18,17 @@ export const StyledButton = styled("button")(
     align-items: center;
     background: inherit;
     border: 0;
-    border-bottom: 0.2rem solid ${theme.palette.button.border};
-    color: ${theme.palette.button.text};
+    border-bottom: 0.2rem solid ${
+      border === "true" ? theme.success : theme.palette.background.default
+    };
+    color: ${theme.grey.text};
     font-size: 1rem;
     padding: 0 1rem;
-    border-width: ${border};
 
     &:hover {
       cursor: pointer;
-      background: ${theme.palette.button.hover};
-      transition: all 0.3s;
+      background: ${theme.grey.hover};
+      border-color: ${border === "true" ? theme.success : theme.grey.hover};
     }
 
     & svg {
@@ -37,6 +42,9 @@ export const IconWrapper = styled(Box)`
   position: absolute;
   right: 2rem;
   line-height: 0;
+  & svg {
+    color: ${({ theme }: { theme: any }) => theme.grey.text}
+  }
 
   &:hover {
     cursor: pointer;

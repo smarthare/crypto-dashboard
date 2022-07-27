@@ -27,7 +27,7 @@ export enum ComponentEnum {
 /*------------------ Common Types ------------------*/
 export type MessageContentType = {
   type: MessageTypeEnum;
-  text: string;
+  text: React.ReactNode;
 };
 
 export type ErrorType = {

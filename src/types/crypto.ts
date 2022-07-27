@@ -40,3 +40,13 @@ export type AssetsType = Array<AssetType> | undefined;
 export type OrderDirType = "asc" | "desc";
 
 export type MarketDataType = Array<[number, number]>;
+
+export type CoinDataType = {
+  links: any;
+  image: {
+    thumb: string;
+    small: string;
+    large: string;
+  };
+  decimals: number;
+} & Pick<AssetType, "id" | "symbol">;

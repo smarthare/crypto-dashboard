@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { AppBar, Toolbar, useTheme } from "@mui/material";
+import { Toolbar, useTheme } from "@mui/material";
 import WbSunnyIcon from "@mui/icons-material/WbSunny";
 import WbSunnyOutlinedIcon from "@mui/icons-material/WbSunnyOutlined";
 import HomeIcon from "@mui/icons-material/Home";
@@ -10,7 +10,7 @@ import BackIcon from "@mui/icons-material/ArrowBack";
 import { AppContext } from "contexts/AppContext";
 import { ComponentEnum } from "types/common";
 
-import { ButtonGroup, IconWrapper, StyledButton } from "./styles";
+import { ButtonGroup, IconWrapper, StyledAppBar, StyledButton } from "./styles";
 
 const Header = ({ type }: { type: ComponentEnum }) => {
   const theme = useTheme();
@@ -26,10 +26,10 @@ const Header = ({ type }: { type: ComponentEnum }) => {
   };
 
   return (
-    <AppBar position="static" color="inherit">
+    <StyledAppBar position="static">
       <Toolbar>
         {type === ComponentEnum.CHART ? (
-          <StyledButton theme={theme} border={"0"} onClick={handleClick("/")}>
+          <StyledButton theme={theme} border={"false"} onClick={handleClick("/")}>
             <BackIcon />
             Back
           </StyledButton>
@@ -37,7 +37,7 @@ const Header = ({ type }: { type: ComponentEnum }) => {
           <ButtonGroup>
             <StyledButton
               theme={theme}
-              border={"3px"}
+              border={type === ComponentEnum.BOARD ? "true" : "false"}
               onClick={handleClick("/")}
             >
               <HomeIcon />
@@ -45,7 +45,7 @@ const Header = ({ type }: { type: ComponentEnum }) => {
             </StyledButton>
             <StyledButton
               theme={theme}
-              border={"0"}
+              border={type === ComponentEnum.WALLET ? "true" : "false"}
               onClick={handleClick("/wallet")}
             >
               <WalletIcon />
@@ -54,10 +54,10 @@ const Header = ({ type }: { type: ComponentEnum }) => {
           </ButtonGroup>
         )}
         <IconWrapper component="span" onClick={handleChangeTheme}>
-          {app.theme ? <WbSunnyIcon /> : <WbSunnyOutlinedIcon />}
+          {app.theme ? <WbSunnyOutlinedIcon /> : <WbSunnyIcon />}
         </IconWrapper>
       </Toolbar>
-    </AppBar>
+    </StyledAppBar>
   );
 };
 

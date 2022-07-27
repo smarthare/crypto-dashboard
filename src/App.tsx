@@ -3,11 +3,13 @@ import { ToastContainer } from "react-toastify";
 import { CssBaseline } from "@mui/material";
 
 import Layout from "components/Layout";
-import Board from "components/Board";
-import Chart from "components/Chart";
+import Board from "components/Pages/Board";
+import Chart from "components/Pages/Chart";
+import Wallet from "components/Pages/Wallet";
 import { AppProvider } from "contexts/AppContext";
 import { PriceProvider } from "contexts/PriceContext";
 import { ComponentEnum } from "types/common";
+import { WalletProvider } from "contexts/WalletContext";
 
 const routes = [
   {
@@ -20,6 +22,11 @@ const routes = [
     path: "/chart/:coinId",
     element: <Chart />,
   },
+  {
+    type: ComponentEnum.WALLET,
+    path: "/wallet",
+    element: <Wallet />,
+  },
 ];
 
 const App = () => {
@@ -27,18 +34,20 @@ const App = () => {
     <AppProvider>
       <CssBaseline />
       <PriceProvider>
-        <BrowserRouter>
-          <Routes>
-            {routes.map((route) => (
-              <Route
-                key={`route-${route.type}`}
-                path={route.path}
-                element={<Layout type={route.type} element={route.element} />}
-              />
-            ))}
-          </Routes>
-        </BrowserRouter>
-        <ToastContainer />
+        <WalletProvider>
+          <BrowserRouter>
+            <Routes>
+              {routes.map((route) => (
+                <Route
+                  key={`route-${route.type}`}
+                  path={route.path}
+                  element={<Layout type={route.type} element={route.element} />}
+                />
+              ))}
+            </Routes>
+          </BrowserRouter>
+          <ToastContainer />
+        </WalletProvider>
       </PriceProvider>
     </AppProvider>
   );

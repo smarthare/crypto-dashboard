@@ -10,28 +10,16 @@ import {
   useTheme,
 } from "@mui/material";
 
+import Loading from "components/Loading";
+import BoardRow from "./BoardRow";
 import { PriceContext } from "contexts/PriceContext";
 import { OrderByEnum, OrderDirType } from "types/crypto";
-import BoardRow from "./BoardRow";
+import { boardCells } from "constants/board";
 
 import { StyledBoard } from "./styles";
 
-const boardCells = [
-  { label: "#", key: OrderByEnum.RANK, width: "10%", disable: false },
-  { label: "Coin", key: OrderByEnum.ID, width: "", disable: false },
-  { label: "Price", key: OrderByEnum.PRICE, width: "15%", disable: false },
-  {
-    label: "24h Volume",
-    key: OrderByEnum.VOLUME,
-    width: "15%",
-    disable: false,
-  },
-  { label: "Mkt Cap", key: OrderByEnum.CAP, width: "15%", disable: false },
-  { label: "Last 7 days", key: "price_chart", width: "15%", disable: true },
-];
-
 const Board = () => {
-  const { prices, setParams } = useContext(PriceContext);
+  const { isLoading, prices, setParams } = useContext(PriceContext);
   const theme = useTheme();
 
   const [orderBy, setOrderBy] = useState<string>(OrderByEnum.CAP);
@@ -101,10 +89,18 @@ const Board = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {prices &&
+            {isLoading ? (
+              <TableRow>
+                <TableCell colSpan={6}>
+                  <Loading />
+                </TableCell>
+              </TableRow>
+            ) : (
+              prices &&
               prices.map((price) => (
                 <BoardRow price={price} key={`key-cypto-${price.id}-price`} />
-              ))}
+              ))
+            )}
           </TableBody>
         </Table>
       </StyledBoard>

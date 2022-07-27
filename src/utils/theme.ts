@@ -1,38 +1,47 @@
 import { createTheme, Theme } from "@mui/material";
 
-declare module "@mui/material/styles/createPalette" {
-  export interface PaletteOptions {
-    button: {
+declare module "@mui/material/styles/createTheme" {
+  export interface ThemeOptions {
+    grey: {
       text: string;
       border: string;
       hover: string;
+      background: string;
+      title: string;
+      appbar: string;
     };
-    border: string;
+    success: string;
   }
 }
 
 export const lightMode: Theme = createTheme({
-  palette: {
-    button: {
-      text: "#000",
-      border: "#4caf50",
-      hover: "#eee"
-    },
+  grey: {
+    text: "#000",
     border: "#ddd",
+    hover: "#eee",
+    background: "#eee",
+    title: "#aaa",
+    appbar: "#fff",
+  },
+  success: "#4caf50",
+  palette: {
     mode: "light",
-  }
+  },
 });
 
 export const darkMode: Theme = createTheme({
-  palette: {
-    button: {
-      text: "#fff",
-      border: "#388e3c",
-      hover: "#222"
-    },
+  grey: {
+    text: "#fff",
     border: "#555",
+    hover: "#222",
+    background: "#272727",
+    title: "#666",
+    appbar: "#121212",
+  },
+  success: "#388e3c",
+  palette: {
     mode: "dark",
-  }
+  },
 });
 
 export const getThemeMode = () =>
