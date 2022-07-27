@@ -20,7 +20,6 @@ import {
   StyledListRow,
 } from "./styles";
 import CustomButton from "components/CustomButton";
-import styled from "styled-components";
 import { balances } from "constants/balance";
 
 const WalletContent = () => {
@@ -33,7 +32,7 @@ const WalletContent = () => {
 
   useEffect(() => {
     coinData && watch(coinData.symbol);
-  }, [coinData]);
+  }, [coinData, watch]);
 
   const handleClick = () => {
     navigator.clipboard.writeText(address || "");
