@@ -35,7 +35,7 @@ export const darkMode: Theme = createTheme({
     border: "#555",
     hover: "#222",
     background: "#272727",
-    title: "#666",
+    title: "#777",
     appbar: "#121212",
   },
   success: "#388e3c",

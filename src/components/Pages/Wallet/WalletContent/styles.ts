@@ -1,7 +1,7 @@
 import { styled } from "@mui/material";
 
 export const StyledContent = styled("div")`
-  width: 80%;
+  width: 70%;
   min-height: 30rem;
   border-radius: 1rem;
   padding: 0 1rem;
@@ -52,13 +52,13 @@ export const StyledBalanceWrapper = styled("div")`
   justify-content: center;
 `;
 
+export const StyledText = styled("p")`
+  margin: 0;
+  color: ${({ theme }: { theme: any }) => theme.grey.title};
+`;
+
 export const StyledBalanceContent = styled("div")`
   text-align: center;
-
-  & p {
-    margin-bottom: 0.5rem;
-    color: ${({ theme }: { theme: any }) => theme.grey.title};
-  }
 
   & h1 {
     font-size: 1.8rem;
@@ -79,26 +79,41 @@ export const StyledButtonGroup = styled("div")`
   }
 `;
 
+export const StyledList = styled("div")`
+  margin-top: 1rem;
+`;
+
 export const StyledListRow = styled("div")`
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+`;
+
+export const StyledTitleContent = styled("div")`
+  display: flex;
+  align-items: center;
+
+  & img {
+    width: 2rem;
+    height: 2rem;
+    margin-right: 0.5rem;
+    background: #fff;
+    padding: 0.2rem;
+    border-radius: 5rem;
+  }
 
   & div {
-    display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: baseline;
 
-    & img {
-      width: 2rem;
-      height: 2rem;
-      margin-right: 0.5rem;
-    }
-
-    & div {
-      flex-direction: column;
+    & p {
+      margin: 0;
+      color: ${({ theme }: { theme: any }) => theme.grey.title};
     }
   }
-  & span {
-    text-align: right;
-  }
-`
+`;
+
+export const StyledPriceContent = styled("div")`
+  text-align: right;
+`;

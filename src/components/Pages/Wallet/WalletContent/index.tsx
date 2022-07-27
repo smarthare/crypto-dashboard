@@ -18,6 +18,10 @@ import {
   StyledBalanceWrapper,
   StyledButtonGroup,
   StyledListRow,
+  StyledList,
+  StyledTitleContent,
+  StyledPriceContent,
+  StyledText,
 } from "./styles";
 import CustomButton from "components/CustomButton";
 import { balances } from "constants/balance";
@@ -79,7 +83,7 @@ const WalletContent = () => {
       </StyledRow>
       <StyledBalanceWrapper>
         <StyledBalanceContent>
-          <p>Total Balance</p>
+          <StyledText>Total Balance</StyledText>
           <h1>
             $2200 <EyeIcon />
           </h1>
@@ -93,23 +97,23 @@ const WalletContent = () => {
           </StyledButtonGroup>
         </StyledBalanceContent>
       </StyledBalanceWrapper>
-      <div>
+      <StyledList>
         {balances.map((balance) => (
           <StyledListRow>
-            <div>
+            <StyledTitleContent>
               <img src={balance.image} alt="metamask" />
               <div>
-                {balance.symbol}<br />
-                {balance.network}
+                {balance.symbol}
+                <StyledText>{balance.network}</StyledText>
               </div>
-            </div>
-            <span>
-              {balance.token}<br />
-              ${balance.usd}
-            </span>
+            </StyledTitleContent>
+            <StyledPriceContent>
+              {balance.token}
+              <StyledText>${balance.usd}</StyledText>
+            </StyledPriceContent>
           </StyledListRow>
         ))}
-      </div>
+      </StyledList>
     </StyledContent>
   );
 };

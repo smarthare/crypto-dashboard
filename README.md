@@ -1,5 +1,5 @@
 # Assessment
-* Finished this assessment without some balance funcs such as getting token balance from specific network and buy/send funcs. *
+* Finished this assessment without some balance funcs such as getting token balance from specific network and buy/send funcs.
 * Built with React.js and TypeScript
 * Integrated with Metamask using Ethers.js
 * Drawn candle chart using Apexchart
