@@ -1,10 +1,3 @@
-# Assessment
-* Finished this assessment without some balance funcs such as getting token balance from specific network and buy/send funcs.
-* Built with React.js and TypeScript
-* Integrated with Metamask using Ethers.js
-* Drawn candle chart using Apexchart
-* Used Coingecko APIs
-
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
